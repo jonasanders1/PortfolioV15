@@ -14,14 +14,13 @@ export const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
   }
-    // NAVBAR
-    nav li > * {
-      color: ${({ theme }) => theme.text};
-      transition: background-color 0.3s, color 0.3s;
-      }
-      .logo > * {
-        color: ${({ theme }) => theme.text};    
-        transition: background-color 0.3s, color 0.3s;
+    nav, .menu-list {
+    background-color:  ${({ theme }) => theme.background}
+    color: ${({ theme }) => theme.text}
     }
+    .list-item-link, .list-item-link__icon,  {
+      color: ${({ theme }) => theme.text}
+    }
+    
 
 `;

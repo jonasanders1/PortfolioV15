@@ -1,6 +1,8 @@
 import { useTheme } from "../../contexts/ThemeContext";
 import NavItem from "./NavItem";
-
+import ThemeToggle from "./ThemeToggle";
+import navlinkArray from "../../utils/navlinks.js";
+import themes from "../../styles/theme.js";
 interface NavListProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (value: boolean) => void;
@@ -10,19 +12,21 @@ const NavList: React.FC<NavListProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const { toggleTheme } = useTheme();
 
   return (
-    <ul className={isMenuOpen ? "mobile-menu mobile-menu--open" : "mobile-menu"}>
-      <NavItem path="/" label="Home" />
-      <NavItem path="/about" label="About" />
-      <NavItem path="/projects" label="Projects" />
-      <NavItem path="/contact" label="Contact" />
-      <button className="theme-toggle-btn" onClick={toggleTheme}>
-        Toggle Theme
-      </button>
+    <ul className={isMenuOpen ? "menu-list menu-list-open" : "menu-list"}>
       {isMenuOpen && (
         <button onClick={() => setIsMenuOpen(false)} className="close-btn">
-          Close
+          <span className="material-symbols-rounded list-item-link__icon">
+            close
+          </span>
         </button>
       )}
+
+      {navlinkArray.map(
+        (link: { path: string; label: string }, index: number) => (
+          <NavItem key={index} path={link.path} label={link.label} />
+        )
+      )}
+      <ThemeToggle toggleTheme={toggleTheme} />
     </ul>
   );
 };

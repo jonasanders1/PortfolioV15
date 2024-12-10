@@ -1,0 +1,31 @@
+.switch-container {
+  width: 40px;
+  height: 20px;
+  background-color: gray;
+  border-radius: 2rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+.switch {
+  position: absolute;
+  left: 3px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.switch-container.dark-mode .switch {
+  left: calc(100% - 15px - 3px);
+  background-color: white;
+}
+
+
+
+.switch-container.dark-mode{
+  background: linear-gradient(45deg,rgb(55, 203, 55), rgb(171, 238, 171) );
+}
