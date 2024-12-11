@@ -5,18 +5,20 @@ interface ThemeToggleProps {
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({ toggleTheme }) => {
-  const { theme } = useTheme();
+  const { themeName, theme } = useTheme();
 
   return (
     <div
       className={
-        theme === "dark" ? "switch-container dark-mode" : "switch-container"
+        themeName === "dark" ? "switch-container dark-mode" : "switch-container"
+
       }
+      style={{backgroundColor: theme.primary}}
       onClick={toggleTheme}
     >
       <div
         className={
-          theme === "dark" ? "switch dark-mode" : "switch"
+          themeName === "dark" ? "switch dark-mode" : "switch"
         }
       ></div>
     </div>

@@ -1,10 +1,7 @@
 /** NAVBAR COMPONENT **/
-:root {
-  --height: 90px;
-}
 
 .navbar-placeholder {
-  height: var(--height);
+  height: var(--desktop-nav-height);
   max-width: 1200px;
 }
 nav {
@@ -13,12 +10,11 @@ nav {
   position: fixed;
   top: 0; /* Sticky to the top for desktop */
   max-width: 1200px;
-  height: var(--height);
+  height: var(--desktop-nav-height);
   justify-content: space-between;
   align-items: center;
   width: 100%;
   z-index: 1000;
-  transition: all 0.3s ease-in-out;
 }
 
 .menu-toggle {
@@ -60,19 +56,16 @@ nav {
 .list-item {
   cursor: pointer;
   transition: all 300ms;
-  opacity: 0.7;
 }
-.list-item:hover,
-.list-item.active {
-  opacity: 1;
-}
-.list-item-link {
+
+.list-item-link, .close-btn {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-decoration: none;
   font-size: 1rem;
 }
+
 .list-item-link__icon {
   display: none;
 }
@@ -90,12 +83,12 @@ nav {
     top: auto; /* Remove top positioning */
     bottom: 0; /* Fixed to the bottom for mobile */
     justify-content: space-between; /* Center content in the navbar */
-    height: 8vh;
+    height: var(--mobile-nav-height);
     background-color: inherit;
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
   }
 
   .menu-list {
-    background-color: inherit;
     position: absolute;
     width: 100%;
     max-width: 100%;
@@ -110,15 +103,13 @@ nav {
   .close-btn {
     grid-row: 1;
     grid-column: 3;
+    display: flex;
+    border: none;
+    text-transform: capitalize;
+    font-size: 1rem;
+    transition: color 0.3s;
   }
   .switch-container {
-    justify-self: center;
-  }
-  .close-btn{
-    max-width: 50px;
-  }
-  .close-btn{
-    display: block;
     justify-self: center;
   }
 
@@ -128,12 +119,9 @@ nav {
   .menu-toggle {
     display: block;
   }
-  .list-item {
-    
-  }
   .menu-list {
     bottom: -500%;
-    transition: bottom 300ms ease;
+    transition: bottom 300ms, background-color 0.3s;
     border-radius: 1rem 1rem 0rem 0rem;
   }
   /* Mobile Menu */

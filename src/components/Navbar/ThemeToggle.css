@@ -1,7 +1,6 @@
 .switch-container {
   width: 40px;
   height: 20px;
-  background-color: gray;
   border-radius: 2rem;
   display: flex;
   align-items: center;
@@ -21,11 +20,6 @@
 
 .switch-container.dark-mode .switch {
   left: calc(100% - 15px - 3px);
-  background-color: white;
 }
 
 
-
-.switch-container.dark-mode{
-  background: linear-gradient(45deg,rgb(55, 203, 55), rgb(171, 238, 171) );
-}

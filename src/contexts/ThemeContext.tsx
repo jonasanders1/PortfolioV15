@@ -1,26 +1,46 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  ReactNode,
+} from "react";
 import { ThemeProvider as StyledThemeProvider } from "styled-components";
 import themes from "../styles/theme";
 
+type Theme = "light" | "dark";
+
 type ThemeContextType = {
   toggleTheme: () => void;
-  theme: string;
+  theme: typeof themes["light"];
+  themeName: "light" | "dark";
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const ThemeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState("light");
+export const ThemeProvider: React.FC<{ children: ReactNode }> = ({
+  children,
+}) => {
+  const [themeName, setThemeName] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem("theme") as Theme | null;
+    return savedTheme || "light"; // Default to "light" if no saved theme
+  });
+
+  useEffect(() => {
+    localStorage.setItem("theme", themeName);
+  }, [themeName]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+    setThemeName((prev) => (prev === "light" ? "dark" : "light"));
   };
 
+  const currentTheme = themes[themeName];
+
   return (
-    <ThemeContext.Provider value={{ toggleTheme, theme }}>
-      <StyledThemeProvider theme={themes[theme]}>
-        {children}
-      </StyledThemeProvider>
+    <ThemeContext.Provider
+      value={{ toggleTheme, theme: currentTheme, themeName }}
+    >
+      <StyledThemeProvider theme={currentTheme}>{children}</StyledThemeProvider>
     </ThemeContext.Provider>
   );
 };

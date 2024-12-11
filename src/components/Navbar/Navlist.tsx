@@ -2,31 +2,47 @@ import { useTheme } from "../../contexts/ThemeContext";
 import NavItem from "./NavItem";
 import ThemeToggle from "./ThemeToggle";
 import navlinkArray from "../../utils/navlinks.js";
-import themes from "../../styles/theme.js";
+import useWindowDimensions from "../../hooks/useWindowDimensions.js";
 interface NavListProps {
   isMenuOpen: boolean;
   setIsMenuOpen: (value: boolean) => void;
 }
 
 const NavList: React.FC<NavListProps> = ({ isMenuOpen, setIsMenuOpen }) => {
-  const { toggleTheme } = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { width } = useWindowDimensions();
 
   return (
-    <ul className={isMenuOpen ? "menu-list menu-list-open" : "menu-list"}>
+    <ul className={isMenuOpen ? "menu-list menu-list-open" : "menu-list"} style={{backgroundColor: theme.background}}>
       {isMenuOpen && (
-        <button onClick={() => setIsMenuOpen(false)} className="close-btn">
+        <button
+          onClick={() => setIsMenuOpen(false)}
+          className="close-btn"
+          style={{ color: theme.text }}
+        >
           <span className="material-symbols-rounded list-item-link__icon">
-            close
+            Close
           </span>
+          {"close"}
         </button>
       )}
 
       {navlinkArray.map(
-        (link: { path: string; label: string }, index: number) => (
-          <NavItem key={index} path={link.path} label={link.label} />
+        (link: { path: string; label: string, icon: string }, index: number) => (
+          <NavItem key={index} path={link.path} label={link.label} icon={link.icon} />
         )
       )}
-      <ThemeToggle toggleTheme={toggleTheme} />
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.3rem",
+          alignItems: "center",
+        }}
+      >
+        <ThemeToggle toggleTheme={toggleTheme} />
+        {<span style={ width >= 700 ? { display: "none" } : {}}>Theme</span>}
+      </div>
     </ul>
   );
 };
