@@ -20,7 +20,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
   onClick
 }) => {
   const { theme } = useTheme();
-  const buttonClass = type === "primary" ? "btn-primary" : "btn-secondary";
+  const buttonClass = type === "primary" ? "custom-btn btn-primary" : "custom-btn btn-secondary";
 
   return (
     <button

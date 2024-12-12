@@ -39,4 +39,8 @@ export const GlobalStyles = createGlobalStyle`
     background-color: ${({ theme }) => theme.background};
     transition: all 0.3s, color 0.3s;
   }
+  
+  a, button{
+  outline-color: ${({ theme }) => theme.primary};
+  }
   `;

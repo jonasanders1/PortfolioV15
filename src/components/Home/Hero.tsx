@@ -8,6 +8,7 @@ import { useTheme } from "styled-components";
 import CustomButton from "../CustomButton/CustomButton";
 import { faHouse } from "@fortawesome/free-solid-svg-icons/faHouse";
 import { useNavigate } from "react-router-dom";
+import Divider from "../Divider/Divider";
 
 const Hero: React.FC = () => {
   const theme = useTheme();
@@ -43,23 +44,21 @@ const Hero: React.FC = () => {
       {/* Text and Buttons */}
       <div className="hero-content">
         <h1>Hi, I'm Jonas Andersen</h1>
+        <Divider text="Frontend developer" />
         <p>
           Frontend Developer passionate about crafting seamless user experiences
-          with modern web technologies like React and TypeScript. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Incidunt necessitatibus
-          enim ea nesciunt nobis ad corrupti natus perspiciatis aliquam
-          deserunt!
+          with modern web technologies like React and TypeScript.
         </p>
         <div className="cta-buttons">
           <CustomButton
             type="primary"
-            label="My primary button"
+            label="Download CV"
             hasIcon={false}
             onClick={() => navigate("/contact")}
           />
           <CustomButton
             type="secondary"
-            label="My secondary button"
+            label="Hire me"
             hasIcon={true}
             icon={faHouse}
           />
@@ -67,9 +66,7 @@ const Hero: React.FC = () => {
       </div>
 
       {/* Image */}
-      <div className="hero-image">
-        <img src={logo} alt="Hero" />
-      </div>
+      <div className="hero-image"></div>
 
       {/* Scroll animation */}
       <a href="https://www.vg.no" className="hero-scroll-animation">

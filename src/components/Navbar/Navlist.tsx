@@ -13,7 +13,10 @@ const NavList: React.FC<NavListProps> = ({ isMenuOpen, setIsMenuOpen }) => {
   const { width } = useWindowDimensions();
 
   return (
-    <ul className={isMenuOpen ? "menu-list menu-list-open" : "menu-list"} style={{backgroundColor: theme.background}}>
+    <ul
+      className={isMenuOpen ? "menu-list menu-list-open" : "menu-list"}
+      style={{ backgroundColor: theme.background }}
+    >
       {isMenuOpen && (
         <button
           onClick={() => setIsMenuOpen(false)}
@@ -28,8 +31,17 @@ const NavList: React.FC<NavListProps> = ({ isMenuOpen, setIsMenuOpen }) => {
       )}
 
       {navlinkArray.map(
-        (link: { path: string; label: string, icon: string }, index: number) => (
-          <NavItem key={index} path={link.path} label={link.label} icon={link.icon} />
+        (
+          link: { path: string; label: string; icon: string },
+          index: number
+        ) => (
+          <NavItem
+            key={index}
+            path={link.path}
+            label={link.label}
+            icon={link.icon}
+            onClick={() => setIsMenuOpen(false)}
+          />
         )
       )}
       <div
@@ -41,7 +53,7 @@ const NavList: React.FC<NavListProps> = ({ isMenuOpen, setIsMenuOpen }) => {
         }}
       >
         <ThemeToggle toggleTheme={toggleTheme} />
-        {<span style={ width >= 700 ? { display: "none" } : {}}>Theme</span>}
+        {<span style={{ display: width >= 700 ? "none" : ""}}>Theme</span>}
       </div>
     </ul>
   );
